@@ -1,42 +1,41 @@
 import React from 'react'
-import { Container, Row, Col, Card } from 'react-bootstrap'
-
+import { Container, Row, Col, Button } from 'react-bootstrap'
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 export default function Home(){
 return (
-<Container>
-<Row className="mb-4">
-<Col>
-<h1 className="page-title">Bienvenido a Tienda Gamer</h1>
-<p className="muted">Videojuegos y artículos de computación con atención profesional.</p>
-</Col>
-</Row>
-<Row>
-<Col md={4} className="mb-3">
-<Card>
-<Card.Body>
-<Card.Title>Periféricos</Card.Title>
-<Card.Text>Mouse, teclados y auriculares para un setup profesional.</Card.Text>
-</Card.Body>
-</Card>
-</Col>
-<Col md={4} className="mb-3">
-<Card>
-<Card.Body>
-<Card.Title>Hardware</Card.Title>
-<Card.Text>Componentes para potenciar tu PC gamer.</Card.Text>
-</Card.Body>
-</Card>
-</Col>
-<Col md={4} className="mb-3">
-<Card>
-<Card.Body>
-<Card.Title>Videojuegos</Card.Title>
-<Card.Text>Títulos destacados y lanzamientos recientes.</Card.Text>
-</Card.Body>
-</Card>
-</Col>
-</Row>
-</Container>
+<main>
+    {/*
+    Adaptando la sección principal (hero) de index.html
+    Usamos un div como contenedor principal para aplicar las clases de hero-section
+    y Container/Row/Col de React Bootstrap para el layout
+    */}
+    <div id="home" className="hero-section">
+        <Container>
+            <Row className="hero-content">
+                <Col md={12}>
+                    <h1>Café Le Blanc</h1>
+                    <p>Un acogedor café temático inspirado en la estética y el ambiente del icónico establecimiento de Persona 5, ubicado en el corazón de Santiago.</p>
+                    <p>Fomentamos la comunidad y la conexión entre personas que comparten la pasión por la cultura japonesa, el café de especialidad y los videojuegos.</p>
+                    {/* El botón se reemplaza por el componente Button de React Bootstrap */}
+                    <Button 
+                        className="hero-button" 
+                        variant="primary" // Usamos una variante de Bootstrap
+                        onClick={() => window.location.href='productos.html'}
+                    >
+                        Conoce nuestros productos
+                    </Button>
+                </Col>
+            </Row>
+        </Container>
+    </div>
+
+    
+
+    
+
+
+</main>
 )
 }
