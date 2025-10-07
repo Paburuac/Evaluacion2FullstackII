@@ -6,7 +6,7 @@ import './styles/custom.css' // estilos formales opcionales
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-<React.StrictMode>
-<App />
-</React.StrictMode>
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
 )
