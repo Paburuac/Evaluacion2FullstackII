@@ -17,6 +17,7 @@ export default function AppNavbar() {
                     <Nav className="me-auto">
                         <Nav.Link as={NavLink} to="/productos">Productos</Nav.Link>
                         <Nav.Link as={NavLink} to="/carrito">Carrito</Nav.Link>
+                        <Nav.Link as={NavLink} to="/perfil">Perfil</Nav.Link>
                     </Nav>
                     <Nav>
                         {user ? (
