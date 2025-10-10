@@ -1,26 +1,170 @@
-:root{
---brand-primary: #0d6efd; /* bootstrap primary */
---brand-dark: #1c2530;
+:root {
+    --brand-primary: #0d6efd;
+    /* bootstrap primary */
+    --brand-dark: #1c2530;
 }
-body{
-background: #f7f9fc;
-color: #223;
+
+body {
+    background: #744f36;
+    /*Color fondo*/
+    color: rgb(0, 0, 0);
+    /*Color letra*/
 }
-.navbar-brand{
-font-weight: 700;
-letter-spacing: .3px;
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: .3px;
 }
-.card{
-border-radius: 16px;
-box-shadow: 0 10px 20px rgba(0,0,0,.06);
+
+.navbar-cream {
+    background-color: #ffd4ac !important; /* Código hexadecimal para color crema */
+    border-bottom: 1px solid #ddd;
 }
-.btn{
-border-radius: 10px;
+
+.card {
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
 }
-.form-label{ font-weight: 600; }
-.page-title{
-font-size: clamp(1.4rem, 2vw, 2rem);
-font-weight: 700;
-margin-bottom: 1rem;
+
+.btn {
+    border-radius: 10px;
 }
-.muted{ color: #6c757d; }
+
+.form-label {
+    font-weight: 600;
+}
+
+.page-title {
+    font-size: clamp(1.4rem, 2vw, 2rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.muted {
+    color: #6c757d;
+}
+
+/* ------------------------------------------- */
+/* 1. VARIABLES DE COLOR (Existentes y Nuevas) */
+/* ------------------------------------------- */
+:root {
+    /* Variables existentes (NO MODIFICAR) */
+    --brand-primary: #0d6efd; /* bootstrap primary */
+    --brand-dark: #1c2530;
+
+    /* Variables NUEVAS para Estética de Café */
+    --color-cafe-oscuro: #A1662F; /* Tono café más visible contra el fondo oscuro */
+    --color-acento: #A1887F;       /* Tono topo/tierra para acentos */
+    --color-crema: #F5EFE6;        /* Fondo suave para elementos claros */
+    --color-texto-claro: #ffffff;  /* Texto claro para contrastar el fondo */
+}
+
+
+/* ------------------------------------------- */
+/* 2. ESTILOS BASE Y TIPOGRAFÍA (Existentes y Nuevos) */
+/* ------------------------------------------- */
+
+/* Estilos de Body Existentes (NO MODIFICAR) */
+body {
+    background: #b47752; /* Color fondo existente */
+    color: rgb(0, 0, 0); /* Color letra existente (negro) */
+    /* Nueva fuente para el cuerpo */
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+}
+
+/* Título de tu componente Home (Café Le Blanc) */
+.Blanc {
+    /* Usamos el color de texto claro de la nueva variable para contrastar el fondo del body */
+    color: var(--color-texto-claro); 
+}
+
+/* Estilos de Navbar Existentes (NO MODIFICAR) */
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: .3px;
+}
+
+.navbar-cream {
+    background-color: #ffd4ac !important; /* Código hexadecimal para color crema */
+    border-bottom: 1px solid #ddd;
+}
+
+/* Estilos de Título de Página y Texto Muted (NO MODIFICAR) */
+.page-title {
+    font-size: clamp(1.4rem, 2vw, 2rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.muted {
+    color: #6c757d;
+}
+
+/* Títulos principales (h1, h2) con fuente audaz y geométrica */
+h1, h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    /* Los títulos dentro del body usarán el color negro existente o se aclararán */
+    color: var(--color-texto-claro); 
+}
+
+
+/* ------------------------------------------- */
+/* 3. ESTILOS DE COMPONENTES (Existentes y Nuevos) */
+/* ------------------------------------------- */
+
+/* Estilos de Card Existentes (NO MODIFICAR) */
+.card {
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Estilo para dar más profundidad a las tarjetas (si se usa en la clase card-shadow) */
+.card-shadow:hover {
+    transform: translateY(-5px); /* Pequeño levantamiento visual */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* Sombra más marcada al levantar */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Estilos de Botón Existentes (NO MODIFICAR) */
+.btn {
+    border-radius: 10px;
+}
+
+/* Estilo principal para tu botón de acción */
+.hero-button, .btn-primary-cafe {
+    /* Usa el color café oscuro como acento */
+    background-color: var(--color-cafe-oscuro); 
+    color: var(--color-texto-claro);
+    border: none;
+    padding: 12px 30px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-button:hover, .btn-primary-cafe:hover {
+    background-color: #8D5726; /* Tono ligeramente más oscuro */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+}
+
+/* Estilos de Formulario Existentes (NO MODIFICAR) */
+.form-label {
+    font-weight: 600;
+}
+
+
+/* ------------------------------------------- */
+/* 4. UTILITY: CENTRADO ABSOLUTO AJUSTADO */
+/* ------------------------------------------- */
+
+/* Centra el elemento horizontalmente y lo desplaza hacia arriba en la pantalla */
+.elemento-centrado {
+    position: fixed; /* Mantiene la posición relativa al viewport */
+    top: 50%; 
+    left: 50%;
+    /* -50% horizontal (centrado), -70% vertical (sube más allá del centro) */
+    transform: translate(-50%, -50%); 
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}

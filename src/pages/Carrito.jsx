@@ -1,10 +1,8 @@
 import React, { useMemo } from 'react'
 import { Container, Table, Button, Alert } from 'react-bootstrap'
 
-
 export default function Carrito({ items, onRemove, onClear }) {
     const total = useMemo(() => items.reduce((acc, p) => acc + p.precio, 0), [items])
-
 
     return (
         <Container>
