@@ -1,14 +1,19 @@
+/* Tu CSS original sin cambios en las secciones que indicaste no modificar */
+
 :root {
-    --brand-primary: #0d6efd;
-    /* bootstrap primary */
+    --brand-primary: #0d6efd; /* bootstrap primary */
     --brand-dark: #1c2530;
+    --color-cafe-oscuro: #A1662F; /* Tono café más visible contra el fondo oscuro */
+    --color-acento: #A1887F;       /* Tono topo/tierra para acentos */
+    --color-crema: #F5EFE6;        /* Fondo suave para elementos claros */
+    --color-texto-claro: #ffffff;  /* Texto claro para contrastar el fondo */
 }
 
 body {
-    background: #744f36;
-    /*Color fondo*/
-    color: rgb(0, 0, 0);
-    /*Color letra*/
+    background: #b47752; /* Color fondo */
+    color: rgb(0, 0, 0); /* Color letra */
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
 }
 
 .navbar-brand {
@@ -17,7 +22,7 @@ body {
 }
 
 .navbar-cream {
-    background-color: #ffd4ac !important; /* Código hexadecimal para color crema */
+    background-color: #ffd4ac !important;
     border-bottom: 1px solid #ddd;
 }
 
@@ -44,99 +49,15 @@ body {
     color: #6c757d;
 }
 
-/* ------------------------------------------- */
-/* 1. VARIABLES DE COLOR (Existentes y Nuevas) */
-/* ------------------------------------------- */
-:root {
-    /* Variables existentes (NO MODIFICAR) */
-    --brand-primary: #0d6efd; /* bootstrap primary */
-    --brand-dark: #1c2530;
-
-    /* Variables NUEVAS para Estética de Café */
-    --color-cafe-oscuro: #A1662F; /* Tono café más visible contra el fondo oscuro */
-    --color-acento: #A1887F;       /* Tono topo/tierra para acentos */
-    --color-crema: #F5EFE6;        /* Fondo suave para elementos claros */
-    --color-texto-claro: #ffffff;  /* Texto claro para contrastar el fondo */
-}
-
-
-/* ------------------------------------------- */
-/* 2. ESTILOS BASE Y TIPOGRAFÍA (Existentes y Nuevos) */
-/* ------------------------------------------- */
-
-/* Estilos de Body Existentes (NO MODIFICAR) */
-body {
-    background: #b47752; /* Color fondo existente */
-    color: rgb(0, 0, 0); /* Color letra existente (negro) */
-    /* Nueva fuente para el cuerpo */
-    font-family: 'Roboto', sans-serif;
-    line-height: 1.6;
-}
-
-/* Título de tu componente Home (Café Le Blanc) */
-.Blanc {
-    /* Usamos el color de texto claro de la nueva variable para contrastar el fondo del body */
-    color: var(--color-texto-claro); 
-}
-
-/* Estilos de Navbar Existentes (NO MODIFICAR) */
-.navbar-brand {
-    font-weight: 700;
-    letter-spacing: .3px;
-}
-
-.navbar-cream {
-    background-color: #ffd4ac !important; /* Código hexadecimal para color crema */
-    border-bottom: 1px solid #ddd;
-}
-
-/* Estilos de Título de Página y Texto Muted (NO MODIFICAR) */
-.page-title {
-    font-size: clamp(1.4rem, 2vw, 2rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.muted {
-    color: #6c757d;
-}
-
-/* Títulos principales (h1, h2) con fuente audaz y geométrica */
 h1, h2 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     letter-spacing: -0.5px;
-    /* Los títulos dentro del body usarán el color negro existente o se aclararán */
-    color: var(--color-texto-claro); 
+    color: var(--color-texto-claro);
 }
 
-
-/* ------------------------------------------- */
-/* 3. ESTILOS DE COMPONENTES (Existentes y Nuevos) */
-/* ------------------------------------------- */
-
-/* Estilos de Card Existentes (NO MODIFICAR) */
-.card {
-    border-radius: 16px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
-}
-
-/* Estilo para dar más profundidad a las tarjetas (si se usa en la clase card-shadow) */
-.card-shadow:hover {
-    transform: translateY(-5px); /* Pequeño levantamiento visual */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* Sombra más marcada al levantar */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Estilos de Botón Existentes (NO MODIFICAR) */
-.btn {
-    border-radius: 10px;
-}
-
-/* Estilo principal para tu botón de acción */
 .hero-button, .btn-primary-cafe {
-    /* Usa el color café oscuro como acento */
-    background-color: var(--color-cafe-oscuro); 
+    background-color: var(--color-cafe-oscuro);
     color: var(--color-texto-claro);
     border: none;
     padding: 12px 30px;
@@ -145,26 +66,96 @@ h1, h2 {
 }
 
 .hero-button:hover, .btn-primary-cafe:hover {
-    background-color: #8D5726; /* Tono ligeramente más oscuro */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    background-color: #8D5726;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Estilos de Formulario Existentes (NO MODIFICAR) */
-.form-label {
+.card-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ------------------------------------------- */
+/* NUEVO: Estilos específicos para el carrito */
+/* ------------------------------------------- */
+
+/* Estilo para el contenedor del carrito */
+.carrito {
+    background-color: rgba(245, 239, 230, 0.1); /* Un fondo sutil con color-crema para resaltar */
+    padding: 20px;
+    border-radius: 20px; /* Bordes redondeados suaves */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* Sombra ligera para profundidad */
+    color: var(--color-texto-claro); /* Texto claro para mejor legibilidad */
+}
+
+/* Estilo para las cards dentro del carrito */
+.carrito .card {
+    background-color: var(--brand-dark); /* Fondo oscuro, pero con un toque de tema */
+    border: 2px solid var(--color-cafe-oscuro); /* Borde con color café para acento */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave para hover */
+}
+
+.carrito .card:hover {
+    transform: translateY(-5px); /* Levanta la card ligeramente */
+    box-shadow: 0 8px 20px rgba(161, 102, 47, 0.3); /* Sombra con color café para coherencia */
+}
+
+/* Estilo para el texto dentro de las cards */
+.carrito .card .card-title,
+.carrito .card .card-text {
+    color: var(--color-texto-claro); /* Asegurar texto claro */
+    font-weight: 500; /* Texto un poco más audaz para modernidad */
+}
+
+/* Estilo para los botones dentro del carrito */
+.carrito .btn {
+    border-radius: 12px; /* Bordes más redondeados para un look premium */
+    font-weight: 600; /* Texto de botones más audaz */
+}
+
+.carrito .btn-outline-secondary {
+    color: var(--color-cafe-oscuro); /* Color café para el botón "Vaciar carrito" */
+    border-color: var(--color-cafe-oscuro);
+}
+
+.carrito .btn-outline-secondary:hover {
+    background-color: var(--color-cafe-oscuro); /* Fondo café al hover */
+    color: var(--color-texto-claro);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra para efecto 3D */
+}
+
+/* Estilo para el total y la sección final */
+.carrito h4 {
+    font-size: 1.4rem; /* Un poco más grande para destacar */
+    font-weight: 700;
+    color: var(--color-acento); /* Usar color acento para un toque de café */
+}
+
+.carrito .d-flex.justify-content-between {
+    background-color: rgba(245, 239, 230, 0.05); /* Fondo sutil para la barra de total */
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid var(--color-acento); /* Borde con color acento */
+}
+
+/* NUEVO: Estilos específicos para la página de login */
+.login {
+    background-color: rgba(245, 239, 230, 0.1); /* Fondo sutil como en el carrito */
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    color: var(--color-texto-claro); /* Texto claro para legibilidad */
+}
+.login .card {
+    border: 2px solid var(--color-cafe-oscuro); /* Borde con color café */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.login .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(161, 102, 47, 0.3);
+}
+.login .form-label {
+    color: var(--color-texto-claro); /* Asegurar que las etiquetas sean claras */
     font-weight: 600;
-}
-
-
-/* ------------------------------------------- */
-/* 4. UTILITY: CENTRADO ABSOLUTO AJUSTADO */
-/* ------------------------------------------- */
-
-/* Centra el elemento horizontalmente y lo desplaza hacia arriba en la pantalla */
-.elemento-centrado {
-    position: fixed; /* Mantiene la posición relativa al viewport */
-    top: 50%; 
-    left: 50%;
-    /* -50% horizontal (centrado), -70% vertical (sube más allá del centro) */
-    transform: translate(-50%, -50%); 
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
 }

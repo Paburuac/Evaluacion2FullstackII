@@ -11,7 +11,7 @@ export default function AppNavbar() {
     return (
         <Navbar bg="light" variant="light" expand="md" className="mb-4 navbar-cream">
             <Container>
-                <Navbar.Brand as={Link} to="/">Cafe leblanc</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/">Cafe LeBlanc</Navbar.Brand>
                 <Navbar.Toggle aria-controls="main-nav" />
                 <Navbar.Collapse id="main-nav">
                     <Nav className="me-auto">

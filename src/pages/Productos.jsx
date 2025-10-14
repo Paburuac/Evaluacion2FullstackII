@@ -1,116 +1,79 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import React, { useState } from 'react'
+import { Container, Row, Col, Card, Button, ButtonGroup } from 'react-bootstrap'
 
 const listaProductos = [
-    { id: 1, name: 'Café LeBlanc Original', price: 2490, description: 'El blend especial de la casa, preparado con granos de café de tueste medio.', image: 'src/imagenes/imagen1.png' },
-    { id: 2, name: 'Curry LeBlanc Original', price: 5990, description: 'El famoso curry casero con la receta secreta, servido con arroz japonés.', image: 'src/imagenes/imagen2.jpg' },
-    { id: 3, name: 'Cheesecake Persona', price: 4990, description: 'Cheesecake de estilo japonés con base de galleta y topping de frutos rojos.', image: 'src/imagenes/imagen3.jpg' },
-    { id: 4, name: 'Katsu Sando', price: 4990, description: 'Sándwich japonés con chuleta de cerdo empanizada, col rallada y salsa tonkatsu.', image: 'src/imagenes/imagen4.jpg' },
-    { id: 5, name: 'Desayuno Japonés', price: 3990, description: 'Set de desayuno tradicional con arroz, huevo, nori y sopa miso.', image: 'src/imagenes/imagen5.png' },
-    { id: 6, name: '"Joker\'s Wild" Cocktail', price: 3490, description: 'Cóctel sin alcohol con jugo de granada, ginger ale y un toque de lima.', image: 'src/imagenes/imagen6.png' }
-];
+  { id: 1, nombre: 'Café LeBlanc Original', precio: 2490, categoria: 'Bebidas', descripcion: 'El blend especial de la casa, preparado con granos de café de tueste medio.', imagen: '/imagenes/imagen1.png' },
+  { id: 2, nombre: 'Curry LeBlanc Original', precio: 5990, categoria: 'Comidas', descripcion: 'El famoso curry casero con la receta secreta, servido con arroz japonés.', imagen: '/imagenes/imagen2.png' },
+  { id: 3, nombre: 'Cheesecake Persona', precio: 4990, categoria: 'Postres', descripcion: 'Cheesecake de estilo japonés con base de galleta y topping de frutos rojos.', imagen: '/imagenes/imagen3.png' },
+  { id: 4, nombre: 'Katsu Sando', precio: 4990, categoria: 'Comidas', descripcion: 'Sándwich japonés con chuleta de cerdo empanizada, col rallada y salsa tonkatsu.', imagen: '/imagenes/imagen4.png' },
+  { id: 5, nombre: 'Desayuno Japonés', precio: 3990, categoria: 'Comidas', descripcion: 'Set de desayuno tradicional con arroz, huevo, nori y sopa miso.', imagen: '/imagenes/imagen5.png' },
+  { id: 6, nombre: '"Joker\'s Wild" Cocktail', precio: 3490, categoria: 'Bebidas', descripcion: 'Cóctel sin alcohol con jugo de granada, ginger ale y un toque de lima.', imagen: '/imagenes/imagen6.png' }
+]
 
-// Componente que maneja la tarjeta individual y su contador
-const ProductoCard = ({ p, onAdd }) => {
-    // ESTADO: La cantidad de este producto (inicia en 1)
-    const [cantidad, setCantidad] = useState(1);
+const categorias = [...new Set(listaProductos.map(p => p.categoria))]
 
-    const handleDecrease = () => {
-        // Asegura que la cantidad mínima sea 1
-        setCantidad(prev => Math.max(1, prev - 1));
-    };
+function ProductoCard({ producto, onAdd }) {
+  const [cantidad, setCantidad] = useState(1)
+  const [src, setSrc] = useState(producto.imagen) // Ruta inicial desde la lista
 
-    const handleIncrease = () => {
-        setCantidad(prev => prev + 1);
-    };
+  // Si falla la carga de .png cambia a .jpg
+  const handleError = () => {
+    if (src.endsWith('.png')) {
+      setSrc(src.replace('.png', '.jpg'))
+    }
+  }
 
-    const handleAddToCart = () => {
-        // Llama a la función del carrito con el producto y la cantidad
-        onAdd(p, cantidad);
-        // Opcional: Reiniciar el contador a 1 después de agregar
-        setCantidad(1);
-    };
+  const aumentar = () => setCantidad(c => c + 1)
+  const disminuir = () => setCantidad(c => (c > 1 ? c - 1 : 1))
 
-    // Aplicamos la clase card-shadow que definiste en tu CSS para el efecto hover
-    return (
-        <Card bg="dark" text="light" className="card-shadow">
-            <Card.Img
-                variant="top"
-                src={p.image}
-                alt={p.name}
-                style={{ height: '220px', objectFit: 'cover' }}
-            />
-            <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                <div>
-                    <Card.Title>{p.name}</Card.Title>
+  return (
+    <Card bg="dark" text="light" className="card-shadow h-100">
+      <Card.Img
+        variant="top"
+        src={src}
+        alt={producto.nombre}
+        onError={handleError}
+        style={{ height: 220, objectFit: 'cover' }}
+      />
+      <Card.Body className="d-flex flex-column">
+        <Card.Title>{producto.nombre}</Card.Title>
+        <Card.Text style={{ flexGrow: 1, fontSize: '0.9em' }}>{producto.descripcion}</Card.Text>
+        <Card.Text className="fw-bold">Precio: ${producto.precio.toLocaleString('es-CL')}</Card.Text>
 
-                    <Card.Text className="text-light" style={{ minHeight: '60px', fontSize: '0.9em' }}>
-                        {p.description}
-                    </Card.Text>
-
-                    <Card.Text className="text-light" style={{ fontWeight: 'bold', fontSize: '1.1em' }}>
-                        Precio: ${p.price.toLocaleString('es-CL')}
-                    </Card.Text>
-                </div>
-
-                {/* Controles de Cantidad */}
-                <div style={{ marginTop: '15px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
-                        {/* Botón de Restar: Usamos el estilo outline-light para un look limpio */}
-                        <Button
-                            variant="outline-light"
-                            size="sm"
-                            onClick={handleDecrease}
-                            // Usamos el color de acento para el texto si es outline
-                            style={{ marginRight: '2px', width: '30px', fontWeight: 'bold' }}
-                            className="btn"
-                        >
-                            -
-                        </Button>
-                        <span style={{ fontSize: '1.2em', fontWeight: 'bold', color: 'white' }}>
-                            {cantidad}
-                        </span>
-                        {/* Botón de Sumar */}
-                        <Button
-                            variant="outline-light"
-                            size="sm"
-                            onClick={handleIncrease}
-                            style={{ marginLeft: '2px', width: '30px', fontWeight: 'bold' }}
-                            className="btn"
-                        >
-                            +
-                        </Button>
-                    </div>
-
-                    {/* Botón de Agregar: Usamos tu clase personalizada para el color de café */}
-                    <Button
-                        className='btn-primary-cafe'
-                        onClick={handleAddToCart}
-                        style={{ width: '100%' }}
-                    >
-                        Agregar {cantidad} al carrito
-                    </Button>
-                </div>
-            </Card.Body>
-        </Card>
-    );
+        <div className="d-flex justify-content-between align-items-center mt-auto">
+          <ButtonGroup size="sm">
+            <Button variant="outline-light" onClick={disminuir}>-</Button>
+            <Button variant="light" disabled>{cantidad}</Button>
+            <Button variant="outline-light" onClick={aumentar}>+</Button>
+          </ButtonGroup>
+          <Button
+            className="btn-primary-cafe"
+            onClick={() => { onAdd(producto, cantidad); setCantidad(1) }}
+          >
+            Agregar
+          </Button>
+        </div>
+      </Card.Body>
+    </Card>
+  )
 }
-// ----------------------------------------------------
 
-
-// Componente principal de la página de productos
 export default function Productos({ onAdd }) {
-    return (
-        <Container>
-            <h2 className="page-title text-light text-center">Productos</h2>
-            <Row >
-                {listaProductos.map(p => (
-                    <Col md={4} key={p.id} className="mb-4 ">
-                        {/* Renderiza la tarjeta con el contador */}
-                        <ProductoCard p={p} onAdd={onAdd} />
-                    </Col>
-                ))}
-            </Row>
-        </Container>
-    );
+  return (
+    <Container className="my-4">
+      <h2 className="page-title text-light text-center mb-4">Productos</h2>
+      {categorias.map(categoria => (
+        <section key={categoria} className="mb-5">
+          <h3 className="text-light mb-3">{categoria}</h3>
+          <Row>
+            {listaProductos.filter(p => p.categoria === categoria).map(producto => (
+              <Col key={producto.id} md={4} className="mb-4">
+                <ProductoCard producto={producto} onAdd={onAdd} />
+              </Col>
+            ))}
+          </Row>
+        </section>
+      ))}
+    </Container>
+  )
 }
