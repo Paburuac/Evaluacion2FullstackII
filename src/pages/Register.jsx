@@ -7,7 +7,8 @@ import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap'
 export default function Register() {
     const { register, login } = useAuth()
     const navigate = useNavigate()
-    const [form, setForm] = useState({ nombre: '', apellido: '', username: '', password: '' })
+    // Usa 'email'
+    const [form, setForm] = useState({ nombre: '', apellido: '', email: '', password: '' })
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
 
@@ -20,11 +21,13 @@ export default function Register() {
         setError('')
         setLoading(true)
         try {
-            await register(form)
-            await login({ username: form.username, password: form.password })
+            // Llama a register con el formulario que ya contiene 'email'
+            await register(form) 
+            // Llama a login usando 'email'
+            await login({ email: form.email, password: form.password }) 
             navigate('/')
         } catch (err) {
-            setError(err.message)
+            setError(err.message || "Ocurrió un error inesperado al registrarse.")
         } finally {
             setLoading(false)
         }
@@ -32,37 +35,61 @@ export default function Register() {
 
 
     return (
-        // 🚨 CAMBIO AQUÍ: Se añade la clase 'register-page'
-        <Container className="register-page"> 
+        <Container className="my-5"> 
             <Row className="justify-content-center">
-                <Col md={6} lg={5}>
-                    <Card className="p-3">
+                <Col md={7} lg={6}>
+                    <Card className="p-4 p-lg-5 login card-shadow"> 
                         <Card.Body>
-                            <Card.Title className="mb-3">Crear cuenta</Card.Title>
+                            <Card.Title className="page-title text-center mb-4">
+                                Únete al Café LeBlanc ☕
+                            </Card.Title>
+                            
                             {error && <Alert variant="danger">{error}</Alert>}
+                            
                             <Form onSubmit={handleSubmit}>
+                                {/* Nombre y Apellido en una sola fila */}
+                                <Row>
+                                    <Col md={6}>
+                                        <Form.Group className="mb-3">
+                                            <Form.Label>Nombre</Form.Label>
+                                            <Form.Control name="nombre" value={form.nombre} onChange={onChange} required />
+                                        </Form.Group>
+                                    </Col>
+                                    <Col md={6}>
+                                        <Form.Group className="mb-3">
+                                            <Form.Label>Apellido</Form.Label>
+                                            <Form.Control name="apellido" value={form.apellido} onChange={onChange} required />
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
+
+                                {/* Campo Correo Electrónico */}
                                 <Form.Group className="mb-3">
-                                    <Form.Label>Nombre</Form.Label>
-                                    <Form.Control name="nombre" value={form.nombre} onChange={onChange} required />
+                                    <Form.Label>Correo Electrónico</Form.Label>
+                                    <Form.Control type="email" name="email" value={form.email} onChange={onChange} placeholder="ejemplo@phantom-thieves.com" required />
                                 </Form.Group>
-                                <Form.Group className="mb-3">
-                                    <Form.Label>Apellido</Form.Label>
-                                    <Form.Control name="apellido" value={form.apellido} onChange={onChange} required />
-                                </Form.Group>
-                                <Form.Group className="mb-3">
-                                    <Form.Label>Usuario</Form.Label>
-                                    <Form.Control name="username" value={form.username} onChange={onChange} required />
-                                </Form.Group>
+                                
+                                {/* Campo Contraseña */}
                                 <Form.Group className="mb-4">
                                     <Form.Label>Contraseña</Form.Label>
                                     <Form.Control type="password" name="password" value={form.password} onChange={onChange} required />
                                 </Form.Group>
+                                
                                 <div className="d-grid gap-2">
-                                    <Button type="submit" disabled={loading}>{loading ? 'Creando…' : 'Crear cuenta'}</Button>
+                                    <Button 
+                                        type="submit" 
+                                        className="btn-primary-cafe"
+                                        disabled={loading}
+                                    >
+                                        {loading ? 'Iniciando conexión…' : '¡Crear cuenta y entrar!'}
+                                    </Button>
                                 </div>
                             </Form>
-                            <hr />
-                            <p className="mb-0">¿Ya tienes cuenta? <Link to="/login">Inicia sesión</Link></p>
+                            
+                            <hr className="mt-4 mb-3" />
+                            <p className="mb-0 text-center text-light">
+                                ¿Ya tienes cuenta? <Link to="/login" className="text-decoration-none">Inicia sesión aquí</Link>
+                            </p>
                         </Card.Body>
                     </Card>
                 </Col>

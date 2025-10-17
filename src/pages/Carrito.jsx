@@ -94,7 +94,7 @@ export default function Carrito({ items, onRemove, onDecreaseQuantity, onAdd, on
 
       <div className="d-flex justify-content-between align-items-center mt-4">
         <h4 className="text-light">Total: ${total.toLocaleString('es-CL')}</h4>
-        <Button variant="outline-secondary" onClick={onClear}>
+        <Button variant="danger" onClick={onClear}>
           Vaciar carrito
         </Button>
         <Button className="btn-primary-cafe">

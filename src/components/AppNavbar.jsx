@@ -14,15 +14,18 @@ export default function AppNavbar() {
                 <Navbar.Brand as={Link} to="/">Cafe LeBlanc</Navbar.Brand>
                 <Navbar.Toggle aria-controls="main-nav" />
                 <Navbar.Collapse id="main-nav">
+                    {/* Sección izquierda (me-auto) */}
                     <Nav className="me-auto">
                         <Nav.Link as={NavLink} to="/productos">Productos</Nav.Link>
                         <Nav.Link as={NavLink} to="/carrito">Carrito</Nav.Link>
+                        <Nav.Link as={NavLink} to="/contacto">Contáctanos</Nav.Link>
                     </Nav>
+                    {/* Sección derecha */}
                     <Nav>
                         {user ? (
                             <>
                                 <Navbar.Text className="me-3">Hola, <strong>{user.nombre}</strong></Navbar.Text>
-                                <Button size="sm" variant="outline-light" onClick={logout}>Cerrar sesión</Button>
+                                <Button size="sm" variant="outline-dark" onClick={logout}>Cerrar sesión</Button>
                             </>
                         ) : (
                             <>

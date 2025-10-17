@@ -4,12 +4,15 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './auth/AuthContext'
 import AppNavbar from './components/AppNavbar'
 import ProtectedRoute from './components/ProtectedRoute'
+import AppFooter from './components/AppFooter'
+
 
 import Home from './pages/Home'
 import Productos from './pages/Productos'
 import Carrito from './pages/Carrito'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Contacto from './pages/Contacto'
 
 export default function App() {
   const [carrito, setCarrito] = useState([])
@@ -83,7 +86,9 @@ export default function App() {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/contacto" element={<Contacto />} />
         </Routes>
+        <AppFooter />
       </Router>
     </AuthProvider>
   )
