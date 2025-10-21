@@ -1,14 +1,19 @@
+/* Tu CSS original sin cambios en las secciones que indicaste no modificar */
+
 :root {
-    --brand-primary: #0d6efd;
-    /* bootstrap primary */
+    --brand-primary: #0d6efd; /* bootstrap primary */
     --brand-dark: #1c2530;
+    --color-cafe-oscuro: #A1662F; /* Tono café más visible contra el fondo oscuro */
+    --color-acento: #A1887F; /* Tono topo/tierra para acentos */
+    --color-crema: #F5EFE6;/* Fondo suave para elementos claros */
+    --color-texto-claro: #ffffff; /* Texto claro para contrastar el fondo */
 }
 
 body {
-    background: #744f36;
-    /*Color fondo*/
-    color: rgb(0, 0, 0);
-    /*Color letra*/
+    background: #b47752; /* Color fondo */
+    color: rgb(0, 0, 0); /* Color letra */
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
 }
 
 .navbar-brand {
@@ -17,7 +22,7 @@ body {
 }
 
 .navbar-cream {
-    background-color: #ffd4ac !important; /* Código hexadecimal para color crema */
+    background-color: #ffd4ac !important;
     border-bottom: 1px solid #ddd;
 }
 
@@ -42,4 +47,449 @@ body {
 
 .muted {
     color: #6c757d;
+}
+
+h1, h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    /* Mantenemos el blanco por defecto para los títulos principales en el fondo del body */
+    color: var(--color-texto-claro);
+}
+
+.hero-button, .btn-primary-cafe {
+    background-color: var(--color-cafe-oscuro);
+    color: var(--color-texto-claro);
+    border: none;
+    padding: 12px 30px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-button:hover, .btn-primary-cafe:hover {
+    background-color: #8D5726;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ------------------------------------------- */
+/* ESTILOS ESPECÍFICOS: Carrito y Login (sin cambios) */
+/* ------------------------------------------- */
+
+/* Estilo para el contenedor del carrito */
+.carrito {
+    background-color: rgba(245, 239, 230, 0.1); /* Un fondo sutil con color-crema para resaltar */
+    padding: 20px;
+    border-radius: 20px; /* Bordes redondeados suaves */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* Sombra ligera para profundidad */
+    color: var(--color-texto-claro); /* Texto claro para mejor legibilidad */
+}
+
+/* Estilo para las cards dentro del carrito */
+.carrito .card {
+    background-color: var(--brand-dark); /* Fondo oscuro, pero con un toque de tema */
+    border: 2px solid var(--color-cafe-oscuro); /* Borde con color café para acento */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave para hover */
+}
+
+.carrito .card:hover {
+    transform: translateY(-5px); /* Levanta la card ligeramente */
+    box-shadow: 0 8px 20px rgba(161, 102, 47, 0.3); /* Sombra con color café para coherencia */
+}
+
+/* Estilo para el texto dentro de las cards */
+.carrito .card .card-title,
+.carrito .card .card-text {
+    color: var(--color-texto-claro); /* Asegurar texto claro */
+    font-weight: 500; /* Texto un poco más audaz para modernidad */
+}
+
+/* Estilo para los botones dentro del carrito */
+.carrito .btn {
+    border-radius: 12px; /* Bordes más redondeados para un look premium */
+    font-weight: 600; /* Texto de botones más audaz */
+}
+
+.carrito .btn-outline-secondary {
+    color: var(--color-cafe-oscuro); /* Color café para el botón "Vaciar carrito" */
+    border-color: var(--color-cafe-oscuro);
+}
+
+.carrito .btn-outline-secondary:hover {
+    background-color: var(--color-cafe-oscuro); /* Fondo café al hover */
+    color: var(--color-texto-claro);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra para efecto 3D */
+}
+
+/* Estilo para el total y la sección final */
+.carrito h4 {
+    font-size: 1.4rem; /* Un poco más grande para destacar */
+    font-weight: 700;
+    color: var(--color-acento); /* Usar color acento para un toque de café */
+}
+
+.carrito .d-flex.justify-content-between {
+    background-color: rgba(245, 239, 230, 0.05); /* Fondo sutil para la barra de total */
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid var(--color-acento); /* Borde con color acento */
+}
+
+/* NUEVO: Estilos específicos para la página de login */
+.login {
+    background-color: rgba(245, 239, 230, 0.1); /* Fondo sutil como en el carrito */
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    color: var(--color-texto-claro); /* Texto claro para legibilidad */
+}
+.login .card {
+    border: 2px solid var(--color-cafe-oscuro); /* Borde con color café */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.login .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(161, 102, 47, 0.3);
+}
+.login .form-label {
+    color: var(--color-texto-claro); /* Asegurar que las etiquetas sean claras */
+    font-weight: 600;
+}
+
+/* ------------------------------------------- */
+/* NUEVO: Estilos para el Footer de la Aplicación */
+/* ------------------------------------------- */
+
+.app-footer {
+    background-color: var(--brand-dark); /* Fondo oscuro consistente */
+    color: var(--color-acento); /* Color de texto suave */
+    /* CORRECCIÓN: Usar variable existente --color-cafe-oscuro */
+    border-top: 3px solid var(--color-cafe-oscuro); 
+    margin-top: 4rem; /* Separación del contenido principal */
+}
+
+.app-footer h5 {
+    color: var(--color-crema) !important; /* Títulos en color crema */
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+}
+
+.app-footer a {
+    color: var(--color-acento) !important; /* Enlaces en color topo/tierra */
+    transition: color 0.2s ease;
+}
+
+.app-footer a:hover {
+    /* CORRECCIÓN: Usar variable existente --color-cafe-oscuro */
+    color: var(--color-cafe-oscuro) !important; 
+}
+
+/* ------------------------------------------- */
+/* ESTILOS OPTIMIZADOS: Página de Contacto */
+/* ------------------------------------------- */
+
+/* Para asegurar que el título principal de la página resalte en el fondo oscuro */
+.contact-container .page-title {
+    color: var(--color-texto-claro); /* Usa blanco para contrastar el fondo café */
+    margin-bottom: 2.5rem !important;
+}
+
+/* Contenedor principal para la página de contacto */
+.contact-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Estilo para la tarjeta del formulario de contacto */
+.contact-card {
+    background-color: var(--color-crema); /* Fondo crema suave (#F5EFE6) */
+    border: 2px solid var(--color-cafe-oscuro); /* Borde café fuerte para enmarcar */
+    color: var(--brand-dark); /* Color de texto oscuro para el contenido */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Sombra más fuerte para levantar la tarjeta */
+}
+
+/* Títulos dentro de la tarjeta (el h2 de la pregunta) */
+.contact-card h2 {
+    color: var(--brand-dark) !important; /* Títulos en oscuro para contraste */
+    font-weight: 700;
+    font-size: 1.6rem;
+    /* Sobrescribe el estilo h1, h2 para mantener el color oscuro */
+    font-family: 'Montserrat', sans-serif; 
+}
+
+/* Estilo para etiquetas e inputs del formulario */
+.contact-card .form-label {
+    color: var(--brand-dark); /* Etiquetas de formulario en oscuro */
+    font-weight: 600;
+}
+
+/* Estilo de los inputs del formulario */
+.contact-card .form-control {
+    border-radius: 8px;
+    border: 1px solid var(--color-acento); /* Borde con color acento */
+    background-color: #ffffff; /* Asegura un fondo blanco puro para inputs */
+    color: var(--brand-dark);
+    transition: border-color 0.3s ease;
+}
+
+.contact-card .form-control:focus {
+    border-color: var(--color-cafe-oscuro); /* Foco en color café principal */
+    box-shadow: 0 0 0 0.25rem rgba(161, 102, 47, 0.25); /* Sombra de foco café semitransparente */
+}
+
+/* Estilo para las tarjetas de información adicional (Dirección/Horario) */
+.info-card {
+    background-color: var(--brand-dark); /* Fondo oscuro consistente */
+    border: 2px solid var(--color-cafe-oscuro); /* Borde de acento */
+    color: var(--color-texto-claro); /* Texto principal claro */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(161, 102, 47, 0.2);
+}
+
+.info-card .card-title {
+    color: var(--color-crema) !important; /* Título en color crema */
+    font-weight: 700;
+}
+
+.info-card .card-text {
+    color: var(--color-acento) !important; /* Texto de info en color acento */
+}
+
+/* Placeholder para el Mapa */
+.map-placeholder {
+    height: 300px; /* Altura fija para el área del mapa */
+    background-color: var(--brand-dark); /* Fondo oscuro para el placeholder del mapa */
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-acento); /* Texto en color acento */
+    font-size: 1.1rem;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ------------------------------------------- */
+/* NUEVO: Estilos y Animación para Mensaje de Éxito */
+/* ------------------------------------------- */
+
+/* Clase para la alerta que se activa al enviar el formulario */
+.alert-success-animated {
+    animation: fadeInBounce 1s ease-out forwards;
+    opacity: 0; /* Empieza invisible */
+    transform: translateY(10px); /* Empieza ligeramente abajo */
+}
+
+/* Keyframes de la animación: Aparecer y subir ligeramente */
+@keyframes fadeInBounce {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    70% {
+        opacity: 1;
+        transform: translateY(-5px); /* Subida un poco más de lo normal (el rebote) */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Posición final */
+    }
+}
+
+/* Estilo para el botón de la alerta (opcional, para usar tu tema) */
+.alert-success-animated .btn-outline-success {
+    color: var(--color-cafe-oscuro);
+    border-color: var(--color-cafe-oscuro);
+    transition: all 0.3s ease;
+}
+
+.alert-success-animated .btn-outline-success:hover {
+    background-color: var(--color-cafe-oscuro);
+    color: var(--color-texto-claro);
+}
+
+/* ================================================= */
+/* 2. ESTILO DE LA BARRA DE NAVEGACIÓN (Navbar) - Optimizado */
+/* (Añade estilos de link y hover, respeta navbar-cream existente) */
+/* ================================================= */
+
+/* Color de los enlaces */
+.navbar-light .navbar-nav .nav-link {
+    color: var(--brand-dark); /* Texto oscuro sobre fondo claro */
+    font-weight: 500;
+}
+
+/* Efecto hover y active (cuando la ruta está activa) */
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link.active {
+    color: var(--color-cafe-oscuro); /* Usa tu variable de café oscuro */
+    border-bottom: 2px solid var(--color-cafe-oscuro);
+    padding-bottom: 5px; 
+}
+
+/* Estilo del botón de cerrar sesión/iniciar sesión si no es el btn-primary-cafe */
+.navbar .btn-outline-dark {
+    border-color: var(--color-cafe-oscuro);
+    color: var(--color-cafe-oscuro);
+}
+.navbar .btn-outline-dark:hover {
+    background-color: var(--color-cafe-oscuro);
+    color: var(--color-crema);
+}
+
+
+/* ================================================= */
+/* 3. ESTILO PARA FORMULARIOS DE AUTENTICACIÓN (LOGIN/REGISTER) - Optimizado */
+/* (Asegura el contraste en el modo oscuro de login) */
+/* ================================================= */
+
+/* Sobreescribe el estilo de la clase .login que habías definido previamente */
+.login.card-shadow {
+    background-color: var(--brand-dark); 
+    color: var(--color-texto-claro); 
+    border: 1px solid var(--color-cafe-oscuro);
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.login .card-title {
+    color: var(--color-crema);
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.login .form-label {
+    color: var(--color-texto-claro); 
+    font-weight: 600;
+}
+
+/* Inputs de texto/contraseña/email */
+.login .form-control {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--brand-dark);
+    border: 1px solid var(--color-acento);
+}
+.login .form-control:focus {
+    border-color: var(--color-cafe-oscuro);
+    box-shadow: 0 0 0 0.25rem rgba(161, 102, 47, 0.35);
+}
+
+/* Links dentro de la tarjeta (ej: Inicia sesión aquí) */
+.login p a {
+    color: var(--color-acento) !important; 
+    font-weight: 700;
+}
+.login p a:hover {
+    color: var(--color-crema) !important;
+}
+
+/* ================================================= */
+/* 4. ESTILO DEL BOTÓN PRINCIPAL (btn-primary-cafe) - Optimizado */
+/* (Asegura que el estilo base se mantenga y añade la animación hover) */
+/* ================================================= */
+
+/* El estilo principal ya está en tu CSS. Solo se añade el :disabled */
+.btn-primary-cafe:disabled {
+    background-color: #777 !important;
+    border-color: #777 !important;
+}
+
+
+/* ================================================= */
+/* 5. ESTILOS ESPECÍFICOS PARA CONTACTO - Necesarios y Finales */
+/* ================================================= */
+
+/* Para asegurar que el título principal de la página resalte en el fondo café */
+.contact-container .page-title {
+    color: var(--color-texto-claro); 
+    margin-bottom: 2.5rem !important;
+}
+
+/* Estilo para el mensaje de usuario logeado */
+.alert-info {
+    background-color: #f0e68c;
+    color: var(--brand-dark);
+    border-color: #e0d27c;
+    font-weight: 600;
+}
+
+/* Estilo para las tarjetas de información adicional (Dirección/Horario) */
+.info-card {
+    background-color: var(--brand-dark);
+    border: 2px solid var(--color-cafe-oscuro);
+    color: var(--color-texto-claro);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(161, 102, 47, 0.2);
+}
+
+.info-card .card-title {
+    color: var(--color-crema) !important;
+    font-weight: 700;
+}
+
+.info-card .card-text {
+    color: var(--color-acento) !important;
+}
+
+/* Placeholder para el Mapa */
+.map-placeholder {
+    height: 300px;
+    background-color: var(--brand-dark);
+    border-radius: 16px;
+    overflow: hidden; /* Asegura que el iframe no se salga */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ------------------------------------------- */
+/* ANIMACIÓN PARA MENSAJE DE ÉXITO */
+/* ------------------------------------------- */
+
+/* Clase para la alerta que se activa al enviar el formulario */
+.alert-success-animated {
+    animation: fadeInBounce 1s ease-out forwards;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+/* Keyframes de la animación: Aparecer y subir ligeramente */
+@keyframes fadeInBounce {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    70% {
+        opacity: 1;
+        transform: translateY(-5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilo para el botón de la alerta */
+.alert-success-animated .btn-outline-success {
+    color: var(--color-cafe-oscuro);
+    border-color: var(--color-cafe-oscuro);
+    transition: all 0.3s ease;
+}
+
+.alert-success-animated .btn-outline-success:hover {
+    background-color: var(--color-cafe-oscuro);
+    color: var(--color-texto-claro);
 }
