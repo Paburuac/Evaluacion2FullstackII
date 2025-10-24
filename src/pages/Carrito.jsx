@@ -97,7 +97,7 @@ export default function Carrito({ items, onRemove, onDecreaseQuantity, onAdd, on
         <Button variant="danger" onClick={onClear}>
           Vaciar carrito
         </Button>
-        <Button className="btn-primary-cafe">
+        <Button className="btn-primary-cafe" onClick={() => window.alert("Muchas gracias por su compra 😊")}>
           Finalizar compra
         </Button>
       </div>
