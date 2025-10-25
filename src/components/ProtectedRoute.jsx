@@ -1,22 +1,15 @@
-import React from "react";
-import { Navigate } from "react-router-dom";
-import { useAuth } from "./AuthContext";
+import React from 'react'
+import { Navigate } from 'react-router-dom'
+import { useAuth } from '../auth/AuthContext'
 
-/**
- * Uso:
- * <ProtectedRoute roles={["ADMIN"]}><VistaAdmin /></ProtectedRoute>
- */
-export default function ProtectedRoute({ roles = [], children }) {
-  const { currentUser } = useAuth();
+export default function ProtectedRoute({ children, role }) {
+  const { user } = useAuth()
 
-  if (!currentUser) {
-    return <Navigate to="/login" replace />;
-  }
-  if (roles.length > 0 && !roles.includes(currentUser.role)) {
-    // Si el rol no coincide, mándalo a su panel o al home
-    if (currentUser.role === "ADMIN") return <Navigate to="/vistaAdmin" replace />;
-    if (currentUser.role === "STAFF") return <Navigate to="/vistaStaff" replace />;
-    return <Navigate to="/" replace />;
-  }
-  return children;
+  // Si no está logueado, redirigir a login
+  if (!user) return <Navigate to="/login" replace />
+
+  // Si se especifica rol y no coincide, redirigir a home
+  if (role && user.rol !== role) return <Navigate to="/" replace />
+
+  return children
 }

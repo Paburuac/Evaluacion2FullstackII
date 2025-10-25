@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { uid } from "../utils/uid"; // <-- generador de IDs compatible con S3
 
 export const BRAND_COLOR = "#744f36";
 
@@ -73,7 +74,7 @@ const SEEDED_PRODUCTS_SOURCE = [
   },
 ];
 
-// Ingredientes base (stock de cocina, independiente al de productos listos)
+// Ingredientes base (stock de cocina)
 const SEEDED_INGREDIENTS = [
   { id: "ing-1", nombre: "Pan de molde", stock: 50 },
   { id: "ing-2", nombre: "Chuleta de cerdo", stock: 30 },
@@ -102,7 +103,7 @@ export const useAuth = () => useContext(AuthContext);
 export function AuthProvider({ children }) {
   // Siembra inicial
   useEffect(() => {
-    // Usuarios
+    // Usuarios base
     const users = readLS(LS_KEYS.USERS, []);
     const usernames = users.map((u) => u.username);
     const merged = [...users];
@@ -111,11 +112,11 @@ export function AuthProvider({ children }) {
     }
     writeLS(LS_KEYS.USERS, merged);
 
-    // Productos
+    // Productos base
     const products = readLS(LS_KEYS.PRODUCTS, []);
     if (products.length === 0) {
       const seeded = SEEDED_PRODUCTS_SOURCE.map((p) => ({
-        id: crypto.randomUUID(),
+        id: uid(),
         nombre: p.name,
         precio: p.price,
         stock: 20,
@@ -128,7 +129,7 @@ export function AuthProvider({ children }) {
       writeLS(LS_KEYS.PRODUCTS, seeded);
     }
 
-    // Ingredientes
+    // Ingredientes base
     const ingredients = readLS(LS_KEYS.INGREDIENTS, []);
     if (ingredients.length === 0) writeLS(LS_KEYS.INGREDIENTS, SEEDED_INGREDIENTS);
 
@@ -140,7 +141,7 @@ export function AuthProvider({ children }) {
     readLS(LS_KEYS.CURRENT, null)
   );
 
-  // ========= AUTH =========
+  // ======== AUTH ========
   const login = async ({ username, password }) => {
     const users = readLS(LS_KEYS.USERS, []);
     const found = users.find(
@@ -165,7 +166,7 @@ export function AuthProvider({ children }) {
       throw new Error("El nombre de usuario ya existe");
     }
     const newUser = {
-      id: crypto.randomUUID(),
+      id: uid(),
       nombre,
       apellido,
       username,
@@ -195,7 +196,7 @@ export function AuthProvider({ children }) {
     writeLS(LS_KEYS.USERS, users.filter((u) => u.id !== id));
   };
 
-  // ========= PRODUCTS (incluye retirados y reset) =========
+  // ======== PRODUCTS ========
   const _readAllProducts = () => readLS(LS_KEYS.PRODUCTS, []);
   const _writeProducts = (arr) => writeLS(LS_KEYS.PRODUCTS, arr);
 
@@ -205,7 +206,7 @@ export function AuthProvider({ children }) {
   const addProduct = (prod) => {
     const products = _readAllProducts();
     const newP = {
-      id: crypto.randomUUID(),
+      id: uid(),
       createdAt: Date.now(),
       isDeleted: false,
       removedAt: null,
@@ -240,7 +241,7 @@ export function AuthProvider({ children }) {
 
   const resetProductsToSeed = () => {
     const seeded = SEEDED_PRODUCTS_SOURCE.map((p) => ({
-      id: crypto.randomUUID(),
+      id: uid(),
       nombre: p.name,
       precio: p.price,
       stock: 20,
@@ -253,7 +254,7 @@ export function AuthProvider({ children }) {
     _writeProducts(seeded);
   };
 
-  // ========= INGREDIENTS (stock de cocina) =========
+  // ======== INGREDIENTS ========
   const listIngredients = () => readLS(LS_KEYS.INGREDIENTS, []);
   const updateIngredient = (id, patch) => {
     const ingredients = readLS(LS_KEYS.INGREDIENTS, []);
@@ -272,16 +273,16 @@ export function AuthProvider({ children }) {
     );
   };
 
-  // ========= SALES (con medio de pago) =========
+  // ======== SALES ========
   const listSales = () => readLS(LS_KEYS.SALES, []);
   const recordSale = ({ productId, qty = 1, amount = 0, pago = "Efectivo" }) => {
     const sales = readLS(LS_KEYS.SALES, []);
     const newSale = {
-      id: crypto.randomUUID(),
+      id: uid(),
       productId,
       qty,
       amount,
-      pago, // "Efectivo" | "Tarjeta"
+      pago,
       registradoPor: currentUser?.username || "STAFF",
       createdAt: Date.now(),
     };
@@ -304,11 +305,10 @@ export function AuthProvider({ children }) {
       login,
       logout,
       register,
-      // users
       listUsers,
       updateUser,
       removeUser,
-      // products
+      // productos
       listProducts,
       listRemovedProducts,
       addProduct,
@@ -316,15 +316,14 @@ export function AuthProvider({ children }) {
       removeProduct,
       restoreProduct,
       resetProductsToSeed,
-      // ingredients
+      // ingredientes
       listIngredients,
       updateIngredient,
       orderMoreIngredient,
-      // sales
+      // ventas
       listSales,
       recordSale,
       getMonthlySummary,
-      // theme
       BRAND_COLOR,
     }),
     [currentUser]
